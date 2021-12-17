@@ -16,11 +16,13 @@ server.use(cookieParser());
 server.use(morgan('dev'));
 server.use((req, res, next) => {
   //res.header('Access-Control-Allow-Origin', process.env.REQUEST_DOMAIN && process.env.REQUEST_LOCAL); // update to match the domain you will make the request from
+  //Funcion para setear mas de un origen que desee hacer la petición al Heroku
   const allowedOrigins = [process.env.REQUEST_DOMAIN, process.env.REQUEST_LOCAL]
   const origin = req.headers.origin;
   if (allowedOrigins.includes(origin)) {
     res.setHeader('Access-Control-Allow-Origin', origin);
 }
+//Fin de la funcion para setear mas de un origen
   //res.header('Access-Control-Allow-Origin', [process.env.REQUEST_DOMAIN, process.env.REQUEST_LOCAL]); // update to match the domain you will make the request from
   res.header('Access-Control-Allow-Credentials', 'true');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
